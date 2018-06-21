@@ -6,6 +6,9 @@ import com.example.napat.movieapp.model.network.API
 interface ConstutorInterActor {
     interface GetApi{
         fun getapi(id:Int)
-        fun getpopularapi()
+
+    }
+    interface GetApiRecycle{
+        fun getpopularapi(page: Int)
     }
 }

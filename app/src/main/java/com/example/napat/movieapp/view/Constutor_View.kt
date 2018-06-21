@@ -7,7 +7,10 @@ interface Constutor_View {
     interface getApiMovieDetail{
         fun showText(a : String)
     }
-    interface  getApiPopularMovie{
-        fun getMovieList(data : PopularMovie)
+    interface getPageApi{
+        fun getPageList(data : PopularMovie)
+    }
+    interface OnLoadMoreListener {
+        fun onLoadMore()
     }
 }

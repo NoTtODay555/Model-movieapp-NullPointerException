@@ -9,5 +9,6 @@ class Retrofit {
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(baseUrl)
             .build()
+
         }
 

@@ -9,34 +9,7 @@ data class PopularMovie(
     val total_results: Int,
     val total_pages: Int,
     val results: List<Result>
-):Parcelable {
-    constructor(parcel: Parcel) : this(
-            parcel.readInt(),
-            parcel.readInt(),
-            parcel.readInt(),
-            TODO("results")) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(page)
-        parcel.writeInt(total_results)
-        parcel.writeInt(total_pages)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<PopularMovie> {
-        override fun createFromParcel(parcel: Parcel): PopularMovie {
-            return PopularMovie(parcel)
-        }
-
-        override fun newArray(size: Int): Array<PopularMovie?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
+)
 
 data class Result(
     val vote_count: Int,
@@ -48,7 +21,6 @@ data class Result(
     val poster_path: String,
     val original_language: String,
     val original_title: String,
-    val genre_ids: List<Int>,
     val backdrop_path: String,
     val adult: Boolean,
     val overview: String,
@@ -64,7 +36,6 @@ data class Result(
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
-            TODO("genre_ids"),
             parcel.readString(),
             parcel.readByte() != 0.toByte(),
             parcel.readString(),
