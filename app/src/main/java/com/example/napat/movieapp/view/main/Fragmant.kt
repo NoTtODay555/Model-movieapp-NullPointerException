@@ -32,7 +32,6 @@ class Fragmant (context: Context) : Fragment()
     private val recyclableAdapter : RecycleviewAdapter = RecycleviewAdapter(popularMovie, context)
     private val presenterPopular: ConstutorPrecenter.RecycleviewMovie = PresenterRecycleView(this)
     override fun getPageList(data: PopularMovie) {
-        Log.e("getList",data.toString())
         popularMovie.addAll(data.results)
         recyclableAdapter.getlist(popularMovie)
     }
@@ -59,7 +58,6 @@ class Fragmant (context: Context) : Fragment()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        Log.e("fragment",param1.toString()+word)
         if (param1 == 3) word?.let { presenterPopular.pullSearchword(num, it) }
         else param1?.let { presenterPopular.pullpage(num, it) }
         recyclableAdapter.setOnLoadMoreListener(this)
@@ -86,7 +84,6 @@ class Fragmant (context: Context) : Fragment()
         @JvmStatic
         fun newInstance(param1: Int,word : String,context: Context) =
                 Fragmant(context).apply {
-                    Log.e("Lodeword",word)
                     arguments = Bundle().apply {
                         putInt(ARG_PARAM1, param1)
                         putString(WORD,word)

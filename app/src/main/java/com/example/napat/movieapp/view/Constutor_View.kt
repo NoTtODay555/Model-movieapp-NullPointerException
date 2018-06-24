@@ -18,6 +18,12 @@ interface Constutor_View {
         fun getActor()
     }
     interface ShowTextFaverite{
-        fun showFaveritetext(text : String,count : Int)
+        fun showFaveritetext(text : String,count : Int,id : Int)
+    }
+    interface GetDataView{
+        fun listViewData(listView: ArrayList<ListViewData>?,id :Int)
+    }
+    interface GetDataFavorite{
+        fun listFavoriteData(listFavorite: ArrayList<Int>?,id :Int,count: Int)
     }
 }

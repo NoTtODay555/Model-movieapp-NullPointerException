@@ -20,7 +20,6 @@ class PresenterRecycleView (val adapterView : Constutor_View.getPageApi): Constu
     }
 
     override fun getMovieList(data: PopularMovie?) {
-        Log.e("getmovieList",data.toString())
         data?.let { adapterView.getPageList(it)}
     }
 }

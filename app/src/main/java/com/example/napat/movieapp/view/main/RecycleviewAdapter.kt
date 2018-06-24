@@ -29,7 +29,6 @@ class RecycleviewAdapter(var popularMovie: List<Result>,val context: Context) : 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if(position+1 == popularMovie.size) {
-            Log.e("Max", popularMovie.size.toString())
             onLoadMoreListener?.onLoadMore()
         }
         return holder.onBindData(popularMovie?.get(position))

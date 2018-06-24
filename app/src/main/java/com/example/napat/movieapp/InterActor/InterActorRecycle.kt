@@ -12,7 +12,6 @@ import retrofit2.Response
 
 class InterActorRecycle (val popularPrecenter : ConstutorPrecenter.RecycleviewMovie): ConstutorInterActor.GetApiRecycle{
     override fun getSearchApi(page: Int, word: String) {
-        Log.e("SearchApi",page.toString()+word)
         var searchRatrofit = Retrofit().retrofit(BaseUrl.baseUrl)
                 .create(API :: class.java).getSearchMovie(page,word)
         searchRatrofit.enqueue(object : Callback<PopularMovie> {
@@ -31,7 +30,6 @@ class InterActorRecycle (val popularPrecenter : ConstutorPrecenter.RecycleviewMo
     }
 
     override fun getpopularapi(page: Int, type: Int) {
-        Log.e("popular",page.toString())
         var popularRetrofit = Retrofit().retrofit(BaseUrl.baseUrl)
                 .create(API :: class.java).getPopularMovie(page)
         var topRateRetrofit = Retrofit().retrofit(BaseUrl.baseUrl)
@@ -57,7 +55,6 @@ class InterActorRecycle (val popularPrecenter : ConstutorPrecenter.RecycleviewMo
 
                     override fun onResponse(call: Call<PopularMovie>?, response: Response<PopularMovie>?) {
                         response?.body()?.let {
-                            Log.e("onresponse",it.toString())
                             popularPrecenter.getMovieList(response.body())
                         }
                     }

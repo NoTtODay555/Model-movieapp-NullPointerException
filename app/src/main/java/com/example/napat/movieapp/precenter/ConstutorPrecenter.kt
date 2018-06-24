@@ -1,9 +1,6 @@
 package com.example.napat.movieapp.precenter
 
-import com.example.napat.movieapp.model.ActorDetail
-import com.example.napat.movieapp.model.MovieDetail
-import com.example.napat.movieapp.model.PopularMovie
-import com.example.napat.movieapp.model.Result
+import com.example.napat.movieapp.model.*
 
 interface ConstutorPrecenter {
     interface Main {
@@ -28,7 +25,17 @@ interface ConstutorPrecenter {
         fun removeData(Id : Int)
     }
     interface ChackFavoriteBT{
-        fun ChackButton(count :Int)
+        fun ChackButton(count :Int,id : Int)
+    }
+    interface DataView{
+        fun getViewData(id : Int)
+        fun setViewData(id: Int, view: Int, list: ArrayList<ListViewData>?)
+        fun findidInArray(list: ArrayList<ListViewData>, id: Int): Int
+    }
+    interface DataFavorite{
+        fun getFavoriteData(id : Int,count: Int)
+        fun setFavoriteData(list: ArrayList<Int>?)
+        fun findFavoriteInArray(list: ArrayList<Int>?,id : Int) : Int
     }
 
 }

@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.ShowMovie" />
-        <activity android:name=".view.favorite.Favorite"></activity>
+        <activity android:name=".view.favorite.Favorite" />
+        <activity android:name=".view.Favorite"></activity>
     </application>
 
 </manifest>

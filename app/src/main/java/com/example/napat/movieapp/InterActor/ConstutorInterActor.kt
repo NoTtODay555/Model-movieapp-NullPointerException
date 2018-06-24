@@ -14,9 +14,4 @@ interface ConstutorInterActor {
         fun getpopularapi(page: Int,type : Int)
         fun getSearchApi(page: Int,word : String)
     }
-    interface GetDataBase{
-        fun gettestdata(): ArrayList<ListViewData>?
-        fun setLogin(id: Int, view: Int, list: ArrayList<ListViewData>)
-        fun findidInArray()
-    }
 }
