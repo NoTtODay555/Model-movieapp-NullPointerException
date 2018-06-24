@@ -1,21 +1,15 @@
-package com.example.napat.movieapp.view
+package com.example.napat.movieapp.view.main
 
 import android.content.Context
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.example.napat.movieapp.R
-import com.example.napat.movieapp.model.PopularMovie
 import com.example.napat.movieapp.model.Result
-import com.example.napat.movieapp.precenter.ConstutorPrecenter
-import com.example.napat.movieapp.precenter.PrecenterMain
-import com.example.napat.movieapp.precenter.PresenterRecycleView
+import com.example.napat.movieapp.view.Constutor_View
 
-class RecycleviewAdapter(var popularMovie: List<Result>) : RecyclerView.Adapter<ViewHolder>() {
+class RecycleviewAdapter(var popularMovie: List<Result>,val context: Context) : RecyclerView.Adapter<ViewHolder>() {
     private var onLoadMoreListener: Constutor_View.OnLoadMoreListener? = null
     fun setOnLoadMoreListener(mOnLoadMoreListener: Constutor_View.OnLoadMoreListener) {
         onLoadMoreListener = mOnLoadMoreListener
@@ -26,7 +20,7 @@ class RecycleviewAdapter(var popularMovie: List<Result>) : RecyclerView.Adapter<
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.cradview,parent,false))
+        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.cradview, parent, false), context)
     }
 
     override fun getItemCount(): Int {
