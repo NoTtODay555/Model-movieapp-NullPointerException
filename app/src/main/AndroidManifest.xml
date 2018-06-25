@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".view.ShowMovie" />
         <activity android:name=".view.favorite.Favorite" />
-        <activity android:name=".view.Favorite"></activity>
+        <activity android:name=".view.favorite.Favorite"></activity>
     </application>
 
 </manifest>

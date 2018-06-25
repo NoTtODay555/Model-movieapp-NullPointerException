@@ -5,6 +5,9 @@ import android.os.Parcelable
 
 
 @Suppress("UNREACHABLE_CODE")
+data class ListMovieDetail(
+        val listMovie : ArrayList<MovieDetail>
+)
 data class MovieDetail(
     val adult: Boolean,
     val backdrop_path: String,

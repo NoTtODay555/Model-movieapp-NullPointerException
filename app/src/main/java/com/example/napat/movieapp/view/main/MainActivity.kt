@@ -1,11 +1,13 @@
 package com.example.napat.movieapp.view.main
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.util.Log
 import android.view.View
 import com.example.napat.movieapp.R
+import com.example.napat.movieapp.view.favorite.Favorite
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(){
@@ -25,6 +27,9 @@ class MainActivity : AppCompatActivity(){
         val pager = findViewById<View>(R.id.vp_image) as ViewPager
         pager.adapter = adapter
         tabs_main.setupWithViewPager(vp_image)
+        bt_favorite.setOnClickListener {
+            startActivity(Intent(this, Favorite:: class.java))
+        }
 
     }
 
