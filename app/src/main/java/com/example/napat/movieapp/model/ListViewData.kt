@@ -4,17 +4,18 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class ListViewData(
-        var id: Int,
-        var viewCount: Int
-):Parcelable {
+    var id: Int? = null,
+    var viewCount: Int? = null
+): Parcelable {
     constructor(parcel: Parcel) : this(
-            parcel.readInt(),
-            parcel.readInt()) {
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Int::class.java.classLoader) as? Int
+    ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeInt(viewCount)
+        parcel.writeValue(id)
+        parcel.writeValue(viewCount)
     }
 
     override fun describeContents(): Int {

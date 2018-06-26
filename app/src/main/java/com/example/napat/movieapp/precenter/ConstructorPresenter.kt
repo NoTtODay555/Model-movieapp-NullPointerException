@@ -1,6 +1,10 @@
 package com.example.napat.movieapp.precenter
 
-import com.example.napat.movieapp.model.*
+import com.example.napat.movieapp.model.ActorDetail
+import com.example.napat.movieapp.model.ListViewData
+import com.example.napat.movieapp.model.MovieDetail
+import com.example.napat.movieapp.model.PopularMovie
+import com.example.napat.movieapp.model.Rate
 
 interface ConstructorPresenter {
     interface Main {
@@ -29,7 +33,7 @@ interface ConstructorPresenter {
     }
     interface DataView{
         fun getViewData(id : Int)
-        fun setViewData(id: Int, view: Int, list: ArrayList<ListViewData>?)
+        fun setViewData(id: Int, view: Int, list: ListViewData?)
         fun findIdInArray(list: ArrayList<ListViewData>, id: Int): Int
     }
     interface DataFavorite{
