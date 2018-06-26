@@ -13,7 +13,7 @@ var LISTDATARATE = "list_data_rate"
 
 @Suppress("DEPRECATION")
 class DataRate(val context: Context, private val showView: Constutor_View.GetDataRate): ConstructorPresenter.DataRate {
-    override fun getHistoryData(id: Int) {
+    override fun getHistoryData(id: Int,fl : Float) {
         val preferences = context.getSharedPreferences(DATARATE, Context.MODE_PRIVATE)
         val test = ""
         val gson = Gson()
@@ -21,7 +21,7 @@ class DataRate(val context: Context, private val showView: Constutor_View.GetDat
         val typeToken = object : TypeToken<ArrayList<Rate>>() {}.type
         val listData: ArrayList<Rate>? = gson.fromJson(json, typeToken)
         Log.e("getView",listData.toString())
-        showView.listRateData(listData,id)
+        showView.listRateData(listData,id,fl)
     }
 
     override fun setHistoryData(list: ArrayList<Rate>?,id : Int,ratingpoint : ArrayList<Int>) {

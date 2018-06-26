@@ -26,6 +26,6 @@ interface Constutor_View {
         fun listHistoryData(listHistory : ArrayList<Int>?,id: Int)
     }
     interface GetDataRate{
-        fun listRateData(listRate : ArrayList<Rate>?,id : Int)
+        fun listRateData(listRate : ArrayList<Rate>?,id : Int,fl : Float)
     }
 }

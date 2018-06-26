@@ -31,7 +31,7 @@ class ShowMovie : AppCompatActivity()
     private val presenter : ConstructorPresenter.Main = PresenterMain(this)
     private var popularMovie : MovieDetail? = null
 
-    override fun listRateData(listRate: ArrayList<Rate>?, id: Int) {
+    override fun listRateData(listRate: ArrayList<Rate>?, id: Int, fl : Float) {
         val i = listRate?.let { dataRate.findidInArray(it,id) }
         val sum = listRate?.let{ i?.let { it1 -> it[it1].ratingPoint }?.let { it2 -> dataRate.sumArrayRate(it2)}}
         Log.e("sum",sum.toString())
@@ -114,7 +114,6 @@ class ShowMovie : AppCompatActivity()
         presenter.getId(id)
         dataView.getViewData(id)
         dataHistory.getHistoryData(id)
-        dataRate.getHistoryData(id)
         dataFavorite.getFavoriteData(id,count1)
         checkFavoriteBT.checkButton(count1,id)
         bt_favorite.setOnClickListener {
@@ -126,6 +125,7 @@ class ShowMovie : AppCompatActivity()
             }
         }
         ratingBar.setOnRatingBarChangeListener { ratingBar, fl, boo ->
+                dataRate.getHistoryData(id,fl)
                 ratingBar.setIsIndicator(boo)
         }
     }

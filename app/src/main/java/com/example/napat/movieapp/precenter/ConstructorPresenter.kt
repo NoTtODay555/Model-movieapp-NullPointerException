@@ -43,7 +43,7 @@ interface ConstructorPresenter {
         fun findIdinArray(list: ArrayList<Int>?, id : Int) : Boolean
     }
     interface DataRate{
-        fun getHistoryData(id : Int)
+        fun getHistoryData(id : Int,fl : Float)
         fun setHistoryData(ist: ArrayList<Rate>?,id : Int,ratingpoint : ArrayList<Int>)
         fun findidInArray(list: ArrayList<Rate>, id: Int): Int
         fun sumArrayRate(list: ArrayList<Int>) : Int
