@@ -26,4 +26,7 @@ interface Constutor_View {
     interface GetDataFavorite{
         fun listFavoriteData(listFavorite: ArrayList<Int>?,id :Int,count: Int)
     }
+    interface GetDataHistory{
+        fun listHistoryData(listHistory : ArrayList<Int>?,id: Int)
+    }
 }

@@ -23,7 +23,7 @@
             android:id="@+id/testxx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"
+            android:text="0"
             android:textSize="30dp" />
 
 

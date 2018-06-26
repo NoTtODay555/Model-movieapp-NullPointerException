@@ -37,8 +37,10 @@ interface ConstutorPrecenter {
         fun setFavoriteData(list: ArrayList<Int>?)
         fun findFavoriteInArray(list: ArrayList<Int>?,id : Int) : Int
     }
-    interface DataRate{
-
+    interface DataHistory{
+        fun getHistoryData(id : Int)
+        fun setHistoryData(list: ArrayList<Int>?)
+        fun findIdinArray(list: ArrayList<Int>?, id : Int) : Boolean
     }
 
 }

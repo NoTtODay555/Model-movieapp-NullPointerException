@@ -26,7 +26,7 @@ class DatabaseHelp(val context: Context,val showView: Constutor_View.GetDataView
         val typeToken = object : TypeToken<ArrayList<ListViewData>>() {}.type
         val listData: ArrayList<ListViewData>? = gson.fromJson(json, typeToken)
         Log.e("getView",listData.toString())
-        listData?.let { showView.listViewData(it,id) }
+        showView.listViewData(listData,id)
     }
 
 

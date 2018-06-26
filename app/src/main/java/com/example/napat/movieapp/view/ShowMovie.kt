@@ -14,9 +14,12 @@ class ShowMovie : AppCompatActivity()
     ,Constutor_View.getApitext ,
         Constutor_View.ShowTextFaverite,
         Constutor_View.GetDataView,
-        Constutor_View.GetDataFavorite{
+        Constutor_View.GetDataFavorite,
+        Constutor_View.GetDataHistory{
+
     val dataView :ConstutorPrecenter.DataView = DatabaseHelp(this,this)
     val dataFavorite = DatabaseFavorrite(this,this)
+    val dataHistory = DataHistory(this,this)
     var a: String = ""
     var num1 = 1
     var list = arrayListOf<ListViewData>()
@@ -42,6 +45,22 @@ class ShowMovie : AppCompatActivity()
         }
     }
 
+    override fun listHistoryData(listHistory: ArrayList<Int>?, id: Int) {
+        Log.e("listHistory",listHistory.toString())
+        if(dataHistory.findIdinArray(listHistory,id) == true) {
+            listHistory?.remove(id)
+            listHistory?.add(id)
+        }else if(listHistory?.size ?: 0 <= 10 ){
+            listHistory?.add(id)
+        }else{
+            listHistory?.removeAt(10)
+            listHistory?.add(id)
+        }
+        dataHistory.setHistoryData(listHistory)
+
+    }
+
+
 
     override fun listViewData(listView: ArrayList<ListViewData>?, id: Int) {
         list = listView ?: arrayListOf()
@@ -53,9 +72,9 @@ class ShowMovie : AppCompatActivity()
             num1 = 0
             dataView.setViewData(id, num1,list)
             dataView.getViewData(id)
-
+        } else {
+            num1 = list[numlist].viewCount + 1
         }
-        else num1 = list[numlist].viewCount + 1
         testxx.text = list[numlist].viewCount.toString()
         dataView.setViewData(id, num1,list)
     }
@@ -88,6 +107,8 @@ class ShowMovie : AppCompatActivity()
         presenter.getIdActor(id)
         presenter.getId(id)
         dataView.getViewData(id)
+        dataHistory.getHistoryData(id)
+
         Log.e("count",count1.toString())
         dataFavorite.getFavoriteData(id,count1)
         chackFavoriteBT.ChackButton(count1,id)
