@@ -32,9 +32,13 @@ class ShowMovie : AppCompatActivity()
     private var popularMovie : MovieDetail? = null
 
     override fun listRateData(listRate: ArrayList<Rate>?, id: Int, fl : Float) {
+        val arrayFloat = arrayListOf<Float>()
         val i = listRate?.let { dataRate.findidInArray(it,id) }
+        Log.e("sum",fl.toString())
+        arrayFloat.add(fl)
+        dataRate.setRateData(listRate ?: arrayListOf(),id,arrayFloat)
         val sum = listRate?.let{ i?.let { it1 -> it[it1].ratingPoint }?.let { it2 -> dataRate.sumArrayRate(it2)}}
-        Log.e("sum",sum.toString())
+        ratingBar.rating = sum ?: 0.0F
     }
 
     override fun listFavoriteData(listFavorite: ArrayList<Int>?, id: Int,count: Int) {
@@ -103,7 +107,6 @@ class ShowMovie : AppCompatActivity()
         Glide.with(this).load(BaseUrl.baseUrlImageMovie + (popularMovie?.backdrop_path)).into(im_showmovie)
         tv_titlename.text = a.title
         tv_overviewename.text = a.overview
-        ratingBar.rating = a.vote_average.toFloat()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,6 +119,8 @@ class ShowMovie : AppCompatActivity()
         dataHistory.getHistoryData(id)
         dataFavorite.getFavoriteData(id,count1)
         checkFavoriteBT.checkButton(count1,id)
+        ratingBar.rating = 3.0f
+        ratingBar.setIsIndicator(false)
         bt_favorite.setOnClickListener {
             checkFavoriteBT.checkButton(count1,id)
             if(count1 == 1){
@@ -125,8 +130,9 @@ class ShowMovie : AppCompatActivity()
             }
         }
         ratingBar.setOnRatingBarChangeListener { ratingBar, fl, boo ->
-                dataRate.getHistoryData(id,fl)
-                ratingBar.setIsIndicator(boo)
+                Log.e("Boo",boo.toString())
+                ratingBar.setIsIndicator(true)
+                dataRate.getRateData(id,fl)
         }
     }
 }

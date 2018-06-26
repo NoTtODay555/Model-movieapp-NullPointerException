@@ -11,6 +11,4 @@
         android:id="@+id/rv_history">
 
     </android.support.v7.widget.RecyclerView>
-
-
 </android.support.constraint.ConstraintLayout>

@@ -13,7 +13,7 @@ var LISTDATARATE = "list_data_rate"
 
 @Suppress("DEPRECATION")
 class DataRate(val context: Context, private val showView: Constutor_View.GetDataRate): ConstructorPresenter.DataRate {
-    override fun getHistoryData(id: Int,fl : Float) {
+    override fun getRateData(id: Int, fl : Float) {
         val preferences = context.getSharedPreferences(DATARATE, Context.MODE_PRIVATE)
         val test = ""
         val gson = Gson()
@@ -24,26 +24,33 @@ class DataRate(val context: Context, private val showView: Constutor_View.GetDat
         showView.listRateData(listData,id,fl)
     }
 
-    override fun setHistoryData(list: ArrayList<Rate>?,id : Int,ratingpoint : ArrayList<Int>) {
+    override fun setRateData(ist: ArrayList<Rate>?, id : Int, ratingPoint : ArrayList<Float>) {
         val preferences = context.getSharedPreferences(DATAVIEW, Context.MODE_PRIVATE)
         val listViewID = Rate(0, arrayListOf())
         listViewID.id = id
-        listViewID.ratingPoint = ratingpoint
-        for (i in 0 until (list?.size ?: 0)) {
-            if (listViewID.id == list?.get(i)?.id ?: 0) {
-                list?.get(i)?.ratingPoint = listViewID.ratingPoint
+        listViewID.ratingPoint = ratingPoint
+        Log.e("listViewID",listViewID.toString())
+        if (ist?.size ?: 0 == 0) {
+            val list = arrayListOf<Rate>()
+            list?.add(listViewID)
+            Log.e("list",list.toString())
+            ist?.addAll(list)
 
+        }
+        for (i in 0 until (ist?.size ?: 0)) {
+            if (listViewID.id == ist?.get(i)?.id ?: 0) {
+                ist?.get(i)?.ratingPoint?.add(listViewID.ratingPoint[0])
             }else {
-                if(!((list?.size?.minus(1)) != i || listViewID.id == list[i].id)){
-                    list.add(listViewID)
+                if(!((ist?.size?.minus(1)) != i || listViewID.id == ist[i].id)){
+                    ist.add(listViewID)
                 }
             }
         }
         val edit = preferences.edit()
         val gson = Gson()
-        val json = gson.toJson(list)
+        val json = gson.toJson(ist)
         Log.e("listview", json.toString())
-        edit.putString(LISTVIEWDATA, json)
+        edit.putString(LISTDATARATE, json)
         edit.apply()
     }
     override fun findidInArray(list: ArrayList<Rate>, id: Int): Int {
@@ -55,8 +62,8 @@ class DataRate(val context: Context, private val showView: Constutor_View.GetDat
         return -1
     }
 
-    override fun sumArrayRate(list: ArrayList<Int>) : Int {
-        var sum = 0
+    override fun sumArrayRate(list: ArrayList<Float>) : Float {
+        var sum = 0.0F
         for (i in 0 until list.size) sum += list[i]
         return sum
     }

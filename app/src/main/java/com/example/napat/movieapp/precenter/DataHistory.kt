@@ -18,7 +18,7 @@ class DataHistory(val context: Context,val history : Constutor_View.GetDataHisto
         val json: String = preferences.getString(DATALISTHISTORY, test)
         val typeToken = object : TypeToken<ArrayList<Int>>() {}.type
         val listData: ArrayList<Int>? = gson.fromJson(json, typeToken)
-        var listDataNew = listData ?: arrayListOf()
+        val listDataNew = listData ?: arrayListOf()
         listDataNew.let {
             Log.e("listFavorite_inPresente", listDataNew.toString())
             history.listHistoryData(it, id)

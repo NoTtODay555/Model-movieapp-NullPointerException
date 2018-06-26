@@ -34,13 +34,13 @@ class DatabaseHelp(val context: Context,val showView: Constutor_View.GetDataView
         val listViewId = ListViewData(0, 0)
         listViewId.id = id
         listViewId.viewCount = view
-        listViewId?.let {
+        listViewId.let {
             if (list?.size ?: 0 == 0) {
                 list?.add(it)
             }
             for (i in 0..(list?.size ?: 0) - 1) {
                 if (list?.get(i)?.id   == listViewId.id) {
-                    list?.get(i)?.viewCount = listViewId.viewCount
+                    list[i].viewCount = listViewId.viewCount
                 }
                 else if (list?.get(i)?.id   != listViewId.id && (list?.size)?.minus(1)  == i) {
                     list.add(it)
