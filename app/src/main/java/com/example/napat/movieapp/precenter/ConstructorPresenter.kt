@@ -2,17 +2,17 @@ package com.example.napat.movieapp.precenter
 
 import com.example.napat.movieapp.model.*
 
-interface ConstutorPrecenter {
+interface ConstructorPresenter {
     interface Main {
         fun getId(id: Int)
         fun getIdActor(id:Int)
-        fun showapitextid(a: MovieDetail)
-        fun showAvtorList(a: ActorDetail)
+        fun showApiTextId(a: MovieDetail)
+        fun showActorList(a: ActorDetail)
 
 
     }
 
-    interface RecycleviewMovie {
+    interface RecyclableMovie {
         fun getMovieList(data: PopularMovie?)
         fun pullpage(pageNumber: Int,type : Int)
         fun pullSearchword(pageNumber: Int,word : String)
@@ -24,13 +24,13 @@ interface ConstutorPrecenter {
     interface DeleteData{
         fun removeData(Id : Int)
     }
-    interface ChackFavoriteBT{
-        fun ChackButton(count :Int,id : Int)
+    interface CheckFavoriteBT{
+        fun checkButton(count :Int, id : Int)
     }
     interface DataView{
         fun getViewData(id : Int)
         fun setViewData(id: Int, view: Int, list: ArrayList<ListViewData>?)
-        fun findidInArray(list: ArrayList<ListViewData>, id: Int): Int
+        fun findIdInArray(list: ArrayList<ListViewData>, id: Int): Int
     }
     interface DataFavorite{
         fun getFavoriteData(id : Int,count: Int)
@@ -41,6 +41,12 @@ interface ConstutorPrecenter {
         fun getHistoryData(id : Int)
         fun setHistoryData(list: ArrayList<Int>?)
         fun findIdinArray(list: ArrayList<Int>?, id : Int) : Boolean
+    }
+    interface DataRate{
+        fun getHistoryData(id : Int)
+        fun setHistoryData(ist: ArrayList<Rate>?,id : Int,ratingpoint : ArrayList<Int>)
+        fun findidInArray(list: ArrayList<Rate>, id: Int): Int
+        fun sumArrayRate(list: ArrayList<Int>) : Int
     }
 
 }

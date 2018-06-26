@@ -13,14 +13,16 @@ import com.example.napat.movieapp.view.favorite.ViewHoderFavorite
 
 class RecycleHistory (var historyMovie: List<MovieDetail>, val context: Context): RecyclerView.Adapter<ViewHoderFavorite>(){
     private var onLoadMoreListener: Constutor_View.OnLoadMoreListener? = null
-    fun setOnLoadMoreListener(mOnLoadMoreListener: Constutor_View.OnLoadMoreListener) {
+    private fun setOnLoadMoreListener(mOnLoadMoreListener: Constutor_View.OnLoadMoreListener) {
         onLoadMoreListener = mOnLoadMoreListener
     }
-    fun getlist (data : List<MovieDetail>) {
+
+    fun getList (data : List<MovieDetail>) {
         Log.e("data",data.toString())
         historyMovie = data
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHoderFavorite {
         val recyclableAdapter = RecycleHistory(historyMovie, context)
         onLoadMoreListener?.let { recyclableAdapter.setOnLoadMoreListener(it) }

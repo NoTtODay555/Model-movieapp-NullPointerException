@@ -1,16 +1,15 @@
 package com.example.napat.movieapp.InterActor
 
-import android.util.Log
 import com.example.napat.movieapp.model.PopularMovie
 import com.example.napat.movieapp.model.network.API
 import com.example.napat.movieapp.model.network.BaseUrl
 import com.example.napat.movieapp.model.network.Retrofit
-import com.example.napat.movieapp.precenter.ConstutorPrecenter
+import com.example.napat.movieapp.precenter.ConstructorPresenter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class InterActorRecycle (val popularPrecenter : ConstutorPrecenter.RecycleviewMovie): ConstutorInterActor.GetApiRecycle{
+class InterActorRecycle (val popularPrecenter : ConstructorPresenter.RecyclableMovie): ConductorInterActor.GetApiRecycle{
     override fun getSearchApi(page: Int, word: String) {
         var searchRatrofit = Retrofit().retrofit(BaseUrl.baseUrl)
                 .create(API :: class.java).getSearchMovie(page,word)
@@ -29,7 +28,7 @@ class InterActorRecycle (val popularPrecenter : ConstutorPrecenter.RecycleviewMo
         })
     }
 
-    override fun getpopularapi(page: Int, type: Int) {
+    override fun getPopularApi(page: Int, type: Int) {
         var popularRetrofit = Retrofit().retrofit(BaseUrl.baseUrl)
                 .create(API :: class.java).getPopularMovie(page)
         var topRateRetrofit = Retrofit().retrofit(BaseUrl.baseUrl)

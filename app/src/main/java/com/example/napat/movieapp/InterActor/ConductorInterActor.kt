@@ -4,14 +4,13 @@ import com.example.napat.movieapp.model.ListViewData
 import com.example.napat.movieapp.model.PopularMovie
 import com.example.napat.movieapp.model.network.API
 
-interface ConstutorInterActor {
+interface ConductorInterActor {
     interface GetApi{
-        fun getapi(id:Int)
+        fun getApi(id:Int)
         fun getActorList(id: Int)
-
     }
     interface GetApiRecycle{
-        fun getpopularapi(page: Int,type : Int)
+        fun getPopularApi(page: Int, type : Int)
         fun getSearchApi(page: Int,word : String)
     }
 }

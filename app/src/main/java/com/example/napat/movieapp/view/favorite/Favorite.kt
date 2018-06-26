@@ -7,23 +7,21 @@ import android.util.Log
 import com.example.napat.movieapp.R
 import com.example.napat.movieapp.model.ActorDetail
 import com.example.napat.movieapp.model.MovieDetail
-import com.example.napat.movieapp.model.PopularMovie
-import com.example.napat.movieapp.precenter.ConstutorPrecenter
-import com.example.napat.movieapp.precenter.DatabaseFavorrite
-import com.example.napat.movieapp.precenter.PrecenterMain
+import com.example.napat.movieapp.precenter.ConstructorPresenter
+import com.example.napat.movieapp.precenter.DatabaseFavorite
+import com.example.napat.movieapp.precenter.PresenterMain
 import com.example.napat.movieapp.view.Constutor_View
-import com.example.napat.movieapp.view.main.RecycleviewAdapter
 import kotlinx.android.synthetic.main.activity_favorite.*
 
 class Favorite : AppCompatActivity(),Constutor_View.GetDataFavorite,
         Constutor_View.getApitext {
-    private val presenter : ConstutorPrecenter.Main = PrecenterMain(this)
+    private val presenter : ConstructorPresenter.Main = PresenterMain(this)
     val list = arrayListOf<MovieDetail>()
-    val recyclableAdapter = RecycleFavorite(list, this)
+    private val recyclableAdapter = RecycleFavorite(list, this)
     override fun showText(a: MovieDetail) {
         list.add(a)
         Log.e("AddList",list.toString())
-        recyclableAdapter.getlist(list)
+        recyclableAdapter.getList(list)
     }
 
     override fun listActor(actor: ActorDetail) {
@@ -40,7 +38,7 @@ class Favorite : AppCompatActivity(),Constutor_View.GetDataFavorite,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite)
-        val dataFavorite : ConstutorPrecenter.DataFavorite= DatabaseFavorrite(this,this)
+        val dataFavorite : ConstructorPresenter.DataFavorite= DatabaseFavorite(this,this)
         dataFavorite.getFavoriteData(0,0)
         Log.e("listData",list.toString())
         rv_favorite.apply {

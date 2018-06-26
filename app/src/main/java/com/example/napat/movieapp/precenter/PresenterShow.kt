@@ -1,10 +1,9 @@
 package com.example.napat.movieapp.precenter
 
 import com.example.napat.movieapp.view.Constutor_View
-import kotlinx.android.synthetic.main.activity_show_movie.*
 
-class PresenterShow (var view : Constutor_View.ShowTextFaverite) : ConstutorPrecenter.ChackFavoriteBT {
-    override fun ChackButton(count: Int,id : Int) {
+class PresenterShow (var view : Constutor_View.ShowTextFaverite) : ConstructorPresenter.CheckFavoriteBT {
+    override fun checkButton(count: Int, id : Int) {
         when(count){
             1 ->{
                 var num = 2
@@ -13,9 +12,7 @@ class PresenterShow (var view : Constutor_View.ShowTextFaverite) : ConstutorPrec
             else -> {
                 var num2 = 1
                 view.showFaveritetext("add in binary",num2,id)
-
             }
         }
     }
-
 }

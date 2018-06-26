@@ -7,7 +7,6 @@ import com.google.gson.Gson
 import android.util.Log
 import com.example.napat.movieapp.model.ListViewData
 import com.example.napat.movieapp.view.Constutor_View
-import com.example.napat.movieapp.view.ShowMovie
 import com.google.gson.reflect.TypeToken
 import kotlin.collections.ArrayList
 
@@ -16,13 +15,13 @@ var DATAVIEW = "File Key"
 var LISTVIEWDATA = "list_data_view"
 
 
-class DatabaseHelp(val context: Context,val showView: Constutor_View.GetDataView) : ConstutorPrecenter.DataView {
+class DatabaseHelp(val context: Context,val showView: Constutor_View.GetDataView) : ConstructorPresenter.DataView {
 
     override fun getViewData(id : Int) {
-        val preferances = context.getSharedPreferences(DATAVIEW, Context.MODE_PRIVATE)
+        val preference = context.getSharedPreferences(DATAVIEW, Context.MODE_PRIVATE)
         val test = ""
         val gson = Gson()
-        val json: String = preferances.getString(LISTVIEWDATA, test)
+        val json: String = preference.getString(LISTVIEWDATA, test)
         val typeToken = object : TypeToken<ArrayList<ListViewData>>() {}.type
         val listData: ArrayList<ListViewData>? = gson.fromJson(json, typeToken)
         Log.e("getView",listData.toString())
@@ -31,24 +30,24 @@ class DatabaseHelp(val context: Context,val showView: Constutor_View.GetDataView
 
 
     override fun setViewData(id: Int, view: Int, list: ArrayList<ListViewData>?) {
-        val preferances = context.getSharedPreferences(DATAVIEW, Context.MODE_PRIVATE)
-        val listidview = ListViewData(0, 0)
-        listidview.id = id
-        listidview.viewCount = view
-        listidview?.let {
+        val preferences = context.getSharedPreferences(DATAVIEW, Context.MODE_PRIVATE)
+        val listViewId = ListViewData(0, 0)
+        listViewId.id = id
+        listViewId.viewCount = view
+        listViewId?.let {
             if (list?.size ?: 0 == 0) {
                 list?.add(it)
             }
             for (i in 0..(list?.size ?: 0) - 1) {
-                if (list?.get(i)?.id   == listidview.id) {
-                    list?.get(i)?.viewCount = listidview.viewCount
+                if (list?.get(i)?.id   == listViewId.id) {
+                    list?.get(i)?.viewCount = listViewId.viewCount
                 }
-                else if (list?.get(i)?.id   != listidview.id && (list?.size)?.minus(1)  == i) {
+                else if (list?.get(i)?.id   != listViewId.id && (list?.size)?.minus(1)  == i) {
                     list.add(it)
                 }
             }
         }
-        val edit = preferances.edit()
+        val edit = preferences.edit()
         val gson = Gson()
         val json = gson.toJson(list)
         Log.e("listview", json.toString())
@@ -56,8 +55,8 @@ class DatabaseHelp(val context: Context,val showView: Constutor_View.GetDataView
         edit.apply()
     }
 
-    override fun findidInArray(list: ArrayList<ListViewData>, id: Int): Int {
-        for (i in 0..list.size - 1) {
+    override fun findIdInArray(list: ArrayList<ListViewData>, id: Int): Int {
+        for (i in 0 until list.size) {
             if (list[i].id == id) {
                 return i
             }

@@ -10,11 +10,11 @@ import android.util.Log
 class ViewPagerAdapter(fm : FragmentManager, private val context: Context,val word :String) : FragmentStatePagerAdapter(fm) {
     override fun getItem(position: Int): Fragment? {
         return when(position){
-            1 -> Fragmant.newInstance(1,"", context)
-            2 -> Fragmant.newInstance(2,"", context)
+            1 -> Fragments.newInstance(1,"", context)
+            2 -> Fragments.newInstance(2,"", context)
             else -> {
                 Log.e("Run",word)
-                Fragmant.newInstance(3,word, context)
+                Fragments.newInstance(3,word, context)
             }
         }
 

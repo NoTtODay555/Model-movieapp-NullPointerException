@@ -9,12 +9,12 @@ import com.example.napat.movieapp.R
 import com.example.napat.movieapp.model.Result
 import com.example.napat.movieapp.view.Constutor_View
 
-class RecycleviewAdapter(var popularMovie: List<Result>,val context: Context) : RecyclerView.Adapter<ViewHolder>() {
+class RecycleViewAdapter(var popularMovie: List<Result>, val context: Context) : RecyclerView.Adapter<ViewHolder>() {
     private var onLoadMoreListener: Constutor_View.OnLoadMoreListener? = null
     fun setOnLoadMoreListener(mOnLoadMoreListener: Constutor_View.OnLoadMoreListener) {
         onLoadMoreListener = mOnLoadMoreListener
     }
-    fun getlist (data : List<Result>) {
+    fun getList (data : List<Result>) {
         popularMovie = data
         notifyDataSetChanged()
     }

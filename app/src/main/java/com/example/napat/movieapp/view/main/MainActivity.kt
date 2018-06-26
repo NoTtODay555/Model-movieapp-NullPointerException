@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
         bt_search.setOnClickListener {
             Log.e("button","Ok")
             val adapter = ViewPagerAdapter(supportFragmentManager, this,et_search.text.toString())
@@ -35,8 +33,6 @@ class MainActivity : AppCompatActivity(){
         bt_history.setOnClickListener {
             startActivity(Intent(this, History:: class.java))
         }
-
     }
-
-    }
+}
 

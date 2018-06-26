@@ -18,7 +18,5 @@ class ViewHolder(val view: View,val context: Context) : RecyclerView.ViewHolder(
         view.setOnClickListener {
             context.startActivity(Intent(context, ShowMovie:: class.java).putExtra("IdMovieDetail", list?.id))
         }
-        }
-
-
     }
+}

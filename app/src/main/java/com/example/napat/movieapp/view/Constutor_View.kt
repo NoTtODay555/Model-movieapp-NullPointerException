@@ -13,10 +13,6 @@ interface Constutor_View {
     interface OnLoadMoreListener {
         fun onLoadMore()
     }
-    interface CheckData{
-        fun getId(favoriteid : ArrayList<Int>)
-        fun getActor()
-    }
     interface ShowTextFaverite{
         fun showFaveritetext(text : String,count : Int,id : Int)
     }
@@ -28,5 +24,8 @@ interface Constutor_View {
     }
     interface GetDataHistory{
         fun listHistoryData(listHistory : ArrayList<Int>?,id: Int)
+    }
+    interface GetDataRate{
+        fun listRateData(listRate : ArrayList<Rate>?,id : Int)
     }
 }
