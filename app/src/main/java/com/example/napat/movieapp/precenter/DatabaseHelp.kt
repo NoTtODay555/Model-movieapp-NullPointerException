@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken
 var DATAVIEW = "File Key"
 var LISTVIEWDATA = "list_data_view"
 
+@Suppress("SENSELESS_NULL_IN_WHEN")
 class DatabaseHelp(val context: Context, val showView: Constutor_View.GetDataView) :
     ConstructorPresenter.DataView {
 
@@ -29,16 +30,20 @@ class DatabaseHelp(val context: Context, val showView: Constutor_View.GetDataVie
     override fun setViewData(id: Int, view: Int, list: ListViewData?) {
         val preferences = context.getSharedPreferences(DATAVIEW, Context.MODE_PRIVATE)
         var keptList = getViewData()
-        if (keptList?.isEmpty() == true) {
+        if (keptList == null) {
+            Log.e(" keptList ", keptList.toString())
             keptList = ArrayList()
         }
-        val filteredList = keptList?.filter { it.id == id }
-        when (filteredList?.isEmpty()) {
+        val filteredList = keptList.filter { it.id == id }
+        Log.e(" filteredList ", filteredList.toString())
+        when (filteredList.isEmpty()) {
             true -> {
-                keptList?.add(list ?: ListViewData())
+                Log.e(" list ", list.toString())
+                keptList.add(list ?: ListViewData())
+                Log.e(" keptList ", keptList.toString())
             }
             else -> {
-                keptList?.forEach {
+                keptList.forEach {
                     if (id == it.id) {
                         it.viewCount = it.viewCount?.plus(1)
                     }

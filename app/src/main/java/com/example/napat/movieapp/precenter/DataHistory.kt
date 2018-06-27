@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken
 var HISTORY = "File Key"
 var DATALISTHISTORY = "list_data_history"
 
-class DataHistory(val context: Context,val history : Constutor_View.GetDataHistory)  : ConstructorPresenter.DataHistory {
+class DataHistory(val context: Context, private val history : Constutor_View.GetDataHistory)  : ConstructorPresenter.DataHistory {
     override fun getHistoryData(id: Int) {
         val preferences = context.getSharedPreferences(HISTORY, Context.MODE_PRIVATE)
         val test = ""

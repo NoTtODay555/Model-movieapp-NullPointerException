@@ -84,8 +84,8 @@ class ShowMovie : AppCompatActivity()
     }
 
     override fun listViewData(listView: ListViewData?, id: Int) {
-        var tempListView: ListViewData?
-        tempListView = when (listView == null) {
+        Log.e("listViewData",listView.toString())
+        val tempListView: ListViewData? = when (listView == null) {
             true -> ListViewData()
             else -> listView
         }
@@ -94,11 +94,12 @@ class ShowMovie : AppCompatActivity()
                 testxx.text = "1"
             }
             else -> {
-                testxx.text = listView?.viewCount?.plus(1).toString()
+                testxx.text = listView?.viewCount.toString()
             }
         }
         tempListView?.viewCount = testxx.text.toString().toInt().plus(1)
         tempListView?.id = id
+        Log.e("tempListView",tempListView.toString())
         dataView.setViewData(id, listView?.viewCount?.plus(1) ?: 0, tempListView)
     }
 
@@ -132,7 +133,7 @@ class ShowMovie : AppCompatActivity()
         dataHistory.getHistoryData(id)
         dataFavorite.getFavoriteData(id, count1)
         checkFavoriteBT.checkButton(count1, id)
-        ratingBar.rating = 3.0f
+        ratingBar.rating = 0.0f
         ratingBar.setIsIndicator(false)
         bt_favorite.setOnClickListener {
             checkFavoriteBT.checkButton(count1, id)
