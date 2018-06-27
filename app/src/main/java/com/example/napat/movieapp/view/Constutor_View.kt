@@ -1,10 +1,6 @@
 package com.example.napat.movieapp.view
 
-import com.example.napat.movieapp.model.ActorDetail
-import com.example.napat.movieapp.model.ListViewData
-import com.example.napat.movieapp.model.MovieDetail
-import com.example.napat.movieapp.model.PopularMovie
-import com.example.napat.movieapp.model.Rate
+import com.example.napat.movieapp.model.*
 
 interface Constutor_View {
     interface getApitext{
@@ -27,7 +23,7 @@ interface Constutor_View {
         fun listFavoriteData(listFavorite: ArrayList<Int>?,id :Int,count: Int)
     }
     interface GetDataHistory{
-        fun listHistoryData(listHistory : ArrayList<Int>?,id: Int)
+        fun listHistoryData(listHistory : ArrayList<HistoryData>?)
     }
     interface GetDataRate{
         fun listRateData(listRate : ArrayList<Rate>?,id : Int,fl : Float)

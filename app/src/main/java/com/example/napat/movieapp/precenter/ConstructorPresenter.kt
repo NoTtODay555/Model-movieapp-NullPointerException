@@ -42,8 +42,8 @@ interface ConstructorPresenter {
         fun findFavoriteInArray(list: ArrayList<Int>?,id : Int) : Int
     }
     interface DataHistory{
-        fun getHistoryData(id : Int)
-        fun setHistoryData(list: ArrayList<Int>?)
+        fun getHistoryData()
+        fun setHistoryData(id: Int, title : String,imageUrl : String)
         fun findIdinArray(list: ArrayList<Int>?, id : Int) : Boolean
     }
     interface DataRate{

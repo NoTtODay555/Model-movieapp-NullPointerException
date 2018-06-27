@@ -5,10 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.bumptech.glide.Glide
 import com.example.napat.movieapp.R
-import com.example.napat.movieapp.model.ActorDetail
-import com.example.napat.movieapp.model.ListViewData
-import com.example.napat.movieapp.model.MovieDetail
-import com.example.napat.movieapp.model.Rate
+import com.example.napat.movieapp.model.*
 import com.example.napat.movieapp.model.network.BaseUrl
 import com.example.napat.movieapp.precenter.ConstructorPresenter
 import com.example.napat.movieapp.precenter.DataHistory
@@ -24,12 +21,12 @@ class ShowMovie : AppCompatActivity()
     Constutor_View.ShowTextFaverite,
     Constutor_View.GetDataView,
     Constutor_View.GetDataFavorite,
-    Constutor_View.GetDataHistory,
-    Constutor_View.GetDataRate {
-
+    Constutor_View.GetDataRate,
+    Constutor_View.GetDataHistory{
+    override fun listHistoryData(listHistory: ArrayList<HistoryData>?) {}
     private val dataView: ConstructorPresenter.DataView = DatabaseHelp(this, this)
     private val dataFavorite = DatabaseFavorite(this, this)
-    private val dataHistory = DataHistory(this, this)
+    private val dataHistory = DataHistory(this,this)
     private val dataRate: ConstructorPresenter.DataRate = DataRate(this, this)
     var a: String = ""
     var num1 = 1
@@ -67,21 +64,7 @@ class ShowMovie : AppCompatActivity()
         }
     }
 
-    override fun listHistoryData(listHistory: ArrayList<Int>?, id: Int) {
-        Log.e("listHistory", listHistory.toString())
-        when {
-            dataHistory.findIdinArray(listHistory, id) -> {
-                listHistory?.remove(id)
-                listHistory?.add(id)
-            }
-            listHistory?.size ?: 0 <= 10 -> listHistory?.add(id)
-            else -> {
-                listHistory?.removeAt(10)
-                listHistory?.add(id)
-            }
-        }
-        dataHistory.setHistoryData(listHistory)
-    }
+
 
     override fun listViewData(listView: ListViewData?, id: Int) {
         Log.e("listViewData",listView.toString())
@@ -121,6 +104,7 @@ class ShowMovie : AppCompatActivity()
             .into(im_showmovie)
         tv_titlename.text = a.title
         tv_overviewename.text = a.overview
+        dataHistory.setHistoryData(a.id,a.title,a.backdrop_path)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,7 +114,6 @@ class ShowMovie : AppCompatActivity()
         presenter.getIdActor(id)
         presenter.getId(id)
         dataView.getViewData(id)
-        dataHistory.getHistoryData(id)
         dataFavorite.getFavoriteData(id, count1)
         checkFavoriteBT.checkButton(count1, id)
         ratingBar.rating = 0.0f
