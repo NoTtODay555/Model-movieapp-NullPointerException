@@ -23,7 +23,7 @@ class ShowMovie : AppCompatActivity()
     Constutor_View.GetDataFavorite,
     Constutor_View.GetDataRate,
     Constutor_View.GetDataHistory{
-    override fun listHistoryData(listHistory: ArrayList<HistoryData>?) {}
+    override fun listHistoryData(listListViweHolder: ArrayList<ListDataViweHolder>?) {}
     private val dataView: ConstructorPresenter.DataView = DatabaseHelp(this, this)
     private val dataFavorite = DatabaseFavorite(this, this)
     private val dataHistory = DataHistory(this,this)

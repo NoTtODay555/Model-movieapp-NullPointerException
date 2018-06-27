@@ -23,7 +23,7 @@ interface Constutor_View {
         fun listFavoriteData(listFavorite: ArrayList<Int>?,id :Int,count: Int)
     }
     interface GetDataHistory{
-        fun listHistoryData(listHistory : ArrayList<HistoryData>?)
+        fun listHistoryData(listListViweHolder : ArrayList<ListDataViweHolder>?)
     }
     interface GetDataRate{
         fun listRateData(listRate : ArrayList<Rate>?,id : Int,fl : Float)

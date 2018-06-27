@@ -33,5 +33,6 @@ class RecycleViewAdapter(var popularMovie: List<Result>, val context: Context) :
         }
         return holder.onBindData(popularMovie?.get(position))
     }
+    
 
 }

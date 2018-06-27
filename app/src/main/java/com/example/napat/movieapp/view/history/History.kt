@@ -5,21 +5,18 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.example.napat.movieapp.R
-import com.example.napat.movieapp.model.ActorDetail
-import com.example.napat.movieapp.model.HistoryData
-import com.example.napat.movieapp.model.MovieDetail
+import com.example.napat.movieapp.model.ListDataViweHolder
 import com.example.napat.movieapp.precenter.ConstructorPresenter
 import com.example.napat.movieapp.precenter.DataHistory
-import com.example.napat.movieapp.precenter.PresenterMain
 import com.example.napat.movieapp.view.Constutor_View
 import kotlinx.android.synthetic.main.activity_history.*
 
 class History : AppCompatActivity(), Constutor_View.GetDataHistory {
-    val list = arrayListOf<HistoryData>()
-    private val listHistory = arrayListOf<HistoryData>()
+    val list = arrayListOf<ListDataViweHolder>()
+    private val listHistory = arrayListOf<ListDataViweHolder>()
     private val recyclableAdapter = RecycleHistory(listHistory, this)
-    override fun listHistoryData(listHistory: ArrayList<HistoryData>?) {
-        listHistory?.let { recyclableAdapter.getList(it) }
+    override fun listHistoryData(listListViweHolder: ArrayList<ListDataViweHolder>?) {
+        listListViweHolder?.let { recyclableAdapter.getList(it) }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
