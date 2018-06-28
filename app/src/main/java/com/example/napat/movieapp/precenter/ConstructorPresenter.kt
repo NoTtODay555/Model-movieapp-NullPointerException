@@ -29,7 +29,7 @@ interface ConstructorPresenter {
         fun removeData(Id : Int)
     }
     interface CheckFavoriteBT{
-        fun checkButton(count :Int, id : Int)
+        fun checkButton(boo: Boolean)
     }
     interface DataView{
         fun getViewData(id : Int)
@@ -37,8 +37,8 @@ interface ConstructorPresenter {
         fun findIdInArray(list: ArrayList<ListViewData>, id: Int): Int
     }
     interface DataFavorite{
-        fun getFavoriteData(id : Int,count: Int)
-        fun setFavoriteData(list: ArrayList<Int>?)
+        fun getFavoriteData(id : Int)
+        fun setFavoriteData(id:Int,title : String,imageUrl : String,boo :Boolean)
         fun findFavoriteInArray(list: ArrayList<Int>?,id : Int) : Int
     }
     interface DataHistory{

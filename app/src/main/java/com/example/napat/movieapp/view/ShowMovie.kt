@@ -29,9 +29,8 @@ class ShowMovie : AppCompatActivity()
     private val dataHistory = DataHistory(this,this)
     private val dataRate: ConstructorPresenter.DataRate = DataRate(this, this)
     var a: String = ""
-    var num1 = 1
     var list = arrayListOf<ListViewData>()
-    var count1 = 0
+    var boo  : Boolean = false
     private var checkFavoriteBT = PresenterShow(this)
     private val presenter: ConstructorPresenter.Main = PresenterMain(this)
     private var popularMovie: MovieDetail? = null
@@ -48,23 +47,10 @@ class ShowMovie : AppCompatActivity()
         ratingBar.rating = sum ?: 0.0F
     }
 
-    override fun listFavoriteData(listFavorite: ArrayList<Int>?, id: Int, count: Int) {
-        count1 = dataFavorite.findFavoriteInArray(listFavorite, id)
-        if (count == 3) {
-            listFavorite?.add(id)
-            dataFavorite.setFavoriteData(listFavorite)
-            Log.e("add", listFavorite.toString())
-            checkFavoriteBT.checkButton(2, id)
-        }
-        if (count == 4) {
-            listFavorite?.remove(id)
-            Log.e("remove", listFavorite.toString())
-            dataFavorite.setFavoriteData(listFavorite)
-            checkFavoriteBT.checkButton(1, id)
-        }
+    override fun listFavoriteData(listFavorite: ArrayList<ListDataViweHolder>?, favorite: Boolean) {
+        checkFavoriteBT.checkButton(favorite)
+        boo = favorite
     }
-
-
 
     override fun listViewData(listView: ListViewData?, id: Int) {
         Log.e("listViewData",listView.toString())
@@ -86,9 +72,8 @@ class ShowMovie : AppCompatActivity()
         dataView.setViewData(id, listView?.viewCount?.plus(1) ?: 0, tempListView)
     }
 
-    override fun showFaveritetext(text: String, count: Int, id: Int) {
+    override fun showFaveritetext(text: String) {
         bt_favorite.text = text
-        count1 = count
     }
 
     override fun listActor(actor: ActorDetail) {
@@ -98,10 +83,9 @@ class ShowMovie : AppCompatActivity()
         tv_actor.text = a
     }
 
-    override fun showText(a: MovieDetail) {
+    override fun showText(a: MovieDetail){
         popularMovie = a
-        Glide.with(this).load(BaseUrl.baseUrlImageMovie + (popularMovie?.backdrop_path))
-            .into(im_showmovie)
+        Glide.with(this).load(BaseUrl.baseUrlImageMovie + (a.backdrop_path)).into(im_showmovie)
         tv_titlename.text = a.title
         tv_overviewename.text = a.overview
         dataHistory.setHistoryData(a.id,a.title,a.backdrop_path)
@@ -114,16 +98,27 @@ class ShowMovie : AppCompatActivity()
         presenter.getIdActor(id)
         presenter.getId(id)
         dataView.getViewData(id)
-        dataFavorite.getFavoriteData(id, count1)
-        checkFavoriteBT.checkButton(count1, id)
+        dataFavorite.getFavoriteData(id)
         ratingBar.rating = 0.0f
         ratingBar.setIsIndicator(false)
         bt_favorite.setOnClickListener {
-            checkFavoriteBT.checkButton(count1, id)
-            if (count1 == 1) {
-                dataFavorite.getFavoriteData(id, 3)
-            } else {
-                dataFavorite.getFavoriteData(id, 4)
+            when(boo){
+                true -> {
+                    boo = false
+                    popularMovie?.backdrop_path?.let {
+                        it1 -> popularMovie?.title?.let {
+                        it2 -> popularMovie?.id?.let {
+                        it3 -> dataFavorite.setFavoriteData(it3, it2, it1,false)}}}
+                    dataFavorite.getFavoriteData(id)
+                }
+                false -> {
+                    boo = true
+                    popularMovie?.backdrop_path?.let {
+                        it1 -> popularMovie?.title?.let {
+                        it2 -> popularMovie?.id?.let {
+                        it3 -> dataFavorite.setFavoriteData(it3, it2, it1,true)} } }
+                    dataFavorite.getFavoriteData(id)
+                }
             }
         }
         ratingBar.setOnRatingBarChangeListener { ratingBar, fl, boo ->
@@ -132,4 +127,5 @@ class ShowMovie : AppCompatActivity()
             dataRate.getRateData(id, fl)
         }
     }
+
 }

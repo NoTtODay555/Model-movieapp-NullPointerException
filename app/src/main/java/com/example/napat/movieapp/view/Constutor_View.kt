@@ -14,13 +14,13 @@ interface Constutor_View {
         fun onLoadMore()
     }
     interface ShowTextFaverite{
-        fun showFaveritetext(text : String,count : Int,id : Int)
+        fun showFaveritetext(text : String)
     }
     interface GetDataView{
         fun listViewData(listView: ListViewData?,id :Int)
     }
     interface GetDataFavorite{
-        fun listFavoriteData(listFavorite: ArrayList<Int>?,id :Int,count: Int)
+        fun listFavoriteData(listFavorite: ArrayList<ListDataViweHolder>?,favorite : Boolean)
     }
     interface GetDataHistory{
         fun listHistoryData(listListViweHolder : ArrayList<ListDataViweHolder>?)

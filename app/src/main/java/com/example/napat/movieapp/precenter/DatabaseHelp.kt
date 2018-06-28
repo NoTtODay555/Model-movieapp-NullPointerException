@@ -29,11 +29,7 @@ class DatabaseHelp(val context: Context, val showView: Constutor_View.GetDataVie
 
     override fun setViewData(id: Int, view: Int, list: ListViewData?) {
         val preferences = context.getSharedPreferences(DATAVIEW, Context.MODE_PRIVATE)
-        var keptList = getViewData()
-        if (keptList == null) {
-            Log.e(" keptList ", keptList.toString())
-            keptList = ArrayList()
-        }
+        val keptList = getViewData() ?: ArrayList()
         val filteredList = keptList.filter { it.id == id }
         Log.e(" filteredList ", filteredList.toString())
         when (filteredList.isEmpty()) {
