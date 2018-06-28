@@ -9,7 +9,7 @@ import com.example.napat.movieapp.view.Constutor_View
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-var DATAVIEW = "File Key"
+var DATAVIEW = "File Key View"
 var LISTVIEWDATA = "list_data_view"
 
 @Suppress("SENSELESS_NULL_IN_WHEN")

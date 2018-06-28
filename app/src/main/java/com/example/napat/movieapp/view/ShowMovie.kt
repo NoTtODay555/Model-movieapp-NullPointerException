@@ -108,7 +108,7 @@ class ShowMovie : AppCompatActivity()
                     popularMovie?.backdrop_path?.let {
                         it1 -> popularMovie?.title?.let {
                         it2 -> popularMovie?.id?.let {
-                        it3 -> dataFavorite.setFavoriteData(it3, it2, it1,false)}}}
+                        it3 -> dataFavorite.setFavoriteData(it3, it2, it1,boo)}}}
                     dataFavorite.getFavoriteData(id)
                 }
                 false -> {
@@ -116,16 +116,12 @@ class ShowMovie : AppCompatActivity()
                     popularMovie?.backdrop_path?.let {
                         it1 -> popularMovie?.title?.let {
                         it2 -> popularMovie?.id?.let {
-                        it3 -> dataFavorite.setFavoriteData(it3, it2, it1,true)} } }
+                        it3 -> dataFavorite.setFavoriteData(it3, it2, it1,boo)} } }
                     dataFavorite.getFavoriteData(id)
                 }
             }
         }
-        ratingBar.setOnRatingBarChangeListener { ratingBar, fl, boo ->
-            Log.e("Boo", boo.toString())
-            ratingBar.setIsIndicator(true)
-            dataRate.getRateData(id, fl)
-        }
+
     }
 
 }

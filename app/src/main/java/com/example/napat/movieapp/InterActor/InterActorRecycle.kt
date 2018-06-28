@@ -12,7 +12,7 @@ import retrofit2.Response
 class InterActorRecycle(val popularPrecenter: ConstructorPresenter.RecyclableMovie) :
     ConductorInterActor.GetApiRecycle {
     override fun getSearchApi(page: Int, word: String) {
-        var searchRatrofit = Retrofit().retrofit(BaseUrl.baseUrl)
+        val searchRatrofit = Retrofit().retrofit(BaseUrl.baseUrl)
             .create(API::class.java).getSearchMovie(page, word)
         searchRatrofit.enqueue(object : Callback<PopularMovie> {
             override fun onFailure(call: Call<PopularMovie>?, t: Throwable?) {

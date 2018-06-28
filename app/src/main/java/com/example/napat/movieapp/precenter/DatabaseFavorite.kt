@@ -8,20 +8,20 @@ import com.example.napat.movieapp.view.Constutor_View
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-var FAVORITE = "File Key"
-var DATALISTFAVORITE = "list_data_favorite"
+var NEWFAVORITE = "File Key Favorite"
+var NEWDATALISTFAVORITE = "list_data_favorite"
 
 @Suppress("DEPRECATION")
 class DatabaseFavorite(val context: Context, val show: Constutor_View.GetDataFavorite) :
     ConstructorPresenter.DataFavorite {
     override fun getFavoriteData(id: Int) {
-        val preference = context.getSharedPreferences(FAVORITE, Context.MODE_PRIVATE)
+        val preference = context.getSharedPreferences(NEWFAVORITE, Context.MODE_PRIVATE)
         val test = ""
         val gson = Gson()
-        val json: String = preference.getString(DATALISTFAVORITE, test)
-        val typeToken = object : TypeToken<ArrayList<ListDataViweHolder>>() {}.type
-        val listData: ArrayList<ListDataViweHolder>? = gson.fromJson(json, typeToken)
-        var listDataNew = listData ?: arrayListOf()
+        val json: String = preference.getString(NEWDATALISTFAVORITE, test)
+        val typeTokenFavorite = object : TypeToken<ArrayList<ListDataViweHolder>>() {}.type
+        val listData: ArrayList<ListDataViweHolder>? = gson.fromJson(json, typeTokenFavorite)
+        val listDataNew = listData ?: arrayListOf()
         listDataNew.let {
             Log.e("listFavorite_inPresente", listDataNew.toString())
             (listData?.filter { it.id == id })?.isNotEmpty()?.let { it1 -> show.listFavoriteData(listData, it1) }
@@ -29,28 +29,28 @@ class DatabaseFavorite(val context: Context, val show: Constutor_View.GetDataFav
     }
 
     override fun setFavoriteData(id:Int,title : String,imageUrl : String,boo :Boolean) {
-        val preference = context.getSharedPreferences(FAVORITE, Context.MODE_PRIVATE)
+        val preference = context.getSharedPreferences(NEWFAVORITE, Context.MODE_PRIVATE)
         val edit = preference.edit()
-        val keptList = getFavoriteDataInClass() ?: ArrayList()
-        val filteredList = keptList.filter { it.id == id }
+        val favoriteList = getFavoriteDataInClass() ?: ArrayList()
+        val filteredList = favoriteList.filter { it.id == id }
         val addItem = ListDataViweHolder(id,title,imageUrl)
         Log.e(" filteredList ", filteredList.toString())
         when (boo) {
             true -> {
-                keptList.add(addItem)
+                favoriteList.add(addItem)
             }
             else -> {
-                for (b in 0 until keptList.size){
-                    if (id == keptList[b].id) {
-                        keptList.remove(keptList[b])
+                for (b in 0 until favoriteList.size){
+                    if (id == favoriteList[b].id) {
+                        favoriteList.remove(favoriteList[b])
                     }
                 }
             }
         }
         val gson = Gson()
-        val json = gson.toJson(keptList)
+        val json = gson.toJson(favoriteList)
         Log.e("Json", json.toString())
-        edit.putString(DATALISTFAVORITE, json)
+        edit.putString(NEWDATALISTFAVORITE, json)
         edit.apply()
     }
 
@@ -63,11 +63,10 @@ class DatabaseFavorite(val context: Context, val show: Constutor_View.GetDataFav
         return 1
     }
      private fun getFavoriteDataInClass() : ArrayList<ListDataViweHolder>?{
-         val preference = context.getSharedPreferences(FAVORITE, Context.MODE_PRIVATE)
-         val test = ""
+         val preference = context.getSharedPreferences(NEWFAVORITE, Context.MODE_PRIVATE)
          val gson = Gson()
-         val json: String = preference.getString(DATALISTFAVORITE, test)
+         val json: String = preference.getString(NEWDATALISTFAVORITE,"")
          val typeToken = object : TypeToken<ArrayList<ListDataViweHolder>>() {}.type
-         return gson.fromJson(json,typeToken)
+         return gson.fromJson(json,typeToken) ?: arrayListOf()
      }
 }

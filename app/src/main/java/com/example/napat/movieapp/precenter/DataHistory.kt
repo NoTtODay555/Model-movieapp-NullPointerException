@@ -8,18 +8,18 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 
-var HISTORY = "File Key"
-var DATALISTHISTORY = "list_data_history"
+var NEWHISTORY = "File Key History"
+var NEWDATALISTHISTORY = "list_data_history"
 
 class DataHistory(val context: Context,
                   private val history : Constutor_View.GetDataHistory)
                   : ConstructorPresenter.DataHistory{
 
     override fun getHistoryData() {
-        val preferences = context.getSharedPreferences(HISTORY, Context.MODE_PRIVATE)
+        val preferences = context.getSharedPreferences(NEWHISTORY, Context.MODE_PRIVATE)
         val test = ""
         val gson = Gson()
-        val json: String = preferences.getString(DATALISTHISTORY, test)
+        val json: String = preferences.getString(NEWDATALISTHISTORY, test)
         val typeToken = object : TypeToken<ArrayList<ListDataViweHolder>>() {}.type
         val listData: ArrayList<ListDataViweHolder>? = gson.fromJson(json, typeToken)
         val listDataNew = listData ?: arrayListOf()
@@ -30,10 +30,9 @@ class DataHistory(val context: Context,
     }
 
     override fun setHistoryData(id: Int, title: String, imageUrl: String) {
-        val preferences = context.getSharedPreferences(HISTORY, Context.MODE_PRIVATE)
+        val preferences = context.getSharedPreferences(NEWHISTORY, Context.MODE_PRIVATE)
         val edit = preferences.edit()
         val listHistory = getHistoryDataInClass() ?: ArrayList()
-        var i = 0
         Log.e(" listHistory ", listHistory.toString())
         val filteredList = listHistory.filter { it.id == id }
         val addHistory = ListDataViweHolder(id,title,imageUrl)
@@ -56,7 +55,7 @@ class DataHistory(val context: Context,
         val gson = Gson()
         val json = gson.toJson(listHistory)
         Log.e("Json", json.toString())
-        edit.putString(DATALISTHISTORY, json)
+        edit.putString(NEWDATALISTHISTORY, json)
         edit.apply()
     }
 
@@ -69,10 +68,10 @@ class DataHistory(val context: Context,
         return false
     }
     private fun getHistoryDataInClass(): ArrayList<ListDataViweHolder>? {
-        val preferences = context.getSharedPreferences(HISTORY, Context.MODE_PRIVATE)
+        val preferences = context.getSharedPreferences(NEWHISTORY, Context.MODE_PRIVATE)
         val test = ""
         val gson = Gson()
-        val json: String = preferences.getString(DATALISTHISTORY, test)
+        val json: String = preferences.getString(NEWDATALISTHISTORY, test)
         val typeToken = object : TypeToken<ArrayList<ListDataViweHolder>>() {}.type
         val listData: ArrayList<ListDataViweHolder>? = gson.fromJson(json, typeToken)
         Log.e("listData",listData.toString())
