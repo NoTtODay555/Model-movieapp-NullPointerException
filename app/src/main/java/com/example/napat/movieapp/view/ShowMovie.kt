@@ -29,8 +29,9 @@ class ShowMovie : AppCompatActivity()
     private val dataHistory = DataHistory(this,this)
     private val dataRate: ConstructorPresenter.DataRate = DataRate(this, this)
     var a: String = ""
+    var boo = false
     var list = arrayListOf<ListViewData>()
-    var boo  : Boolean = false
+
     private var checkFavoriteBT = PresenterShow(this)
     private val presenter: ConstructorPresenter.Main = PresenterMain(this)
     private var popularMovie: MovieDetail? = null
@@ -40,11 +41,22 @@ class ShowMovie : AppCompatActivity()
         val i = listRate?.let { dataRate.findidInArray(it, id) }
         Log.e("sum", fl.toString())
         arrayFloat.add(fl)
+        var sumint = 0.0F
+        val filteredList = listRate?.filter { it.id == id } ?: listOf()
         dataRate.setRateData(listRate ?: arrayListOf(), id, arrayFloat)
-        val sum = listRate?.let {
-            i?.let { it1 -> it[it1].ratingPoint }?.let { it2 -> dataRate.sumArrayRate(it2) }
+        when (filteredList.isEmpty()) {
+            true -> {
+                dataRate.setRateData(listRate,id,arrayFloat)
+                sumint = fl
+            }
+            else -> {
+                dataRate.setRateData(listRate,id,arrayFloat)
+                filteredList[0].ratingPoint.forEach {
+                    sumint += it
+                }
+            }
         }
-        ratingBar.rating = sum ?: 0.0F
+        ratingBar.rating = sumint
     }
 
     override fun listFavoriteData(listFavorite: ArrayList<ListDataViweHolder>?, favorite: Boolean) {
@@ -120,6 +132,11 @@ class ShowMovie : AppCompatActivity()
                     dataFavorite.getFavoriteData(id)
                 }
             }
+        }
+        ratingBar.setOnRatingBarChangeListener { ratingBar, fl, bo ->
+            Log.e("Boo",boo.toString())
+            ratingBar.setIsIndicator(true)
+            if(bo) dataRate.getRateData(id,fl)
         }
 
     }

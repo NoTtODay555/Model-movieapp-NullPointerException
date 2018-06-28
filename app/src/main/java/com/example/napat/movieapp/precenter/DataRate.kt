@@ -32,7 +32,7 @@ class DataRate(val context: Context, private val showView: Constutor_View.GetDat
         Log.e("listViewID",listViewID.toString())
         if (ist?.size ?: 0 == 0) {
             val list = arrayListOf<Rate>()
-            list?.add(listViewID)
+            list.add(listViewID)
             Log.e("list",list.toString())
             ist?.addAll(list)
 
@@ -54,7 +54,7 @@ class DataRate(val context: Context, private val showView: Constutor_View.GetDat
         edit.apply()
     }
     override fun findidInArray(list: ArrayList<Rate>, id: Int): Int {
-        for (i in 0..list.size - 1) {
+        for (i in 0 until list.size) {
             if (list[i].id == id) {
                 return i
             }
