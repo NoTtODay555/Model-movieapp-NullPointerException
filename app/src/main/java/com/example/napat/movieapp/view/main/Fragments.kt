@@ -25,7 +25,7 @@ class Fragments (context: Context) : Fragment()
         Constutor_View.OnLoadMoreListener {
     private var param1: Int? = null
     private var word : String? = null
-    var num : Int = 1
+    private var num : Int = 1
     private var popularMovie : ArrayList<Result> = arrayListOf()
     private val recyclableAdapter : RecycleViewAdapter = RecycleViewAdapter(popularMovie, context)
     private val presenterPopular: ConstructorPresenter.RecyclableMovie = PresenterRecycleView(this)

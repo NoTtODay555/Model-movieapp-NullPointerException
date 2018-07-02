@@ -9,13 +9,15 @@ import com.example.napat.movieapp.R
 import com.example.napat.movieapp.model.Result
 import com.example.napat.movieapp.view.Constutor_View
 
-class RecycleViewAdapter(var popularMovie: List<Result>, val context: Context) : RecyclerView.Adapter<ViewHolder>() {
+class RecycleViewAdapter(private var popularMovie: List<Result>, val context: Context) : RecyclerView.Adapter<ViewHolder>() {
     private var onLoadMoreListener: Constutor_View.OnLoadMoreListener? = null
     fun setOnLoadMoreListener(mOnLoadMoreListener: Constutor_View.OnLoadMoreListener) {
         onLoadMoreListener = mOnLoadMoreListener
     }
     fun getList (data : List<Result>) {
+        Log.e("data",data.toString())
         popularMovie = data
+        Log.e("popularMovie",popularMovie.toString())
         notifyDataSetChanged()
     }
 
@@ -24,14 +26,14 @@ class RecycleViewAdapter(var popularMovie: List<Result>, val context: Context) :
     }
 
     override fun getItemCount(): Int {
-       return popularMovie?.size
+       return popularMovie.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if(position+1 == popularMovie.size) {
             onLoadMoreListener?.onLoadMore()
         }
-        return holder.onBindData(popularMovie?.get(position))
+        return holder.onBindData(popularMovie[position])
     }
     
 

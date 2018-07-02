@@ -7,6 +7,8 @@ import com.example.napat.movieapp.model.network.API
 import com.example.napat.movieapp.model.network.BaseUrl
 import com.example.napat.movieapp.model.network.Retrofit
 import com.example.napat.movieapp.precenter.ConstructorPresenter
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,32 +19,20 @@ class InterActor(val presenter : ConstructorPresenter.Main) : ConductorInterActo
         Log.e("getAPI",id.toString())
         Retrofit().retrofit(BaseUrl.baseUrl)
                 .create(API :: class.java).getActor(id)
-                .enqueue(object : Callback<ActorDetail>{
-                    override fun onFailure(call: Call<ActorDetail>?, t: Throwable?) {
-                    }
+                .subscribeOn(Schedulers.io())
+                .subscribe{
+                    presenter.showActorList(it)
+                }
 
-                    override fun onResponse(call: Call<ActorDetail>?, response: Response<ActorDetail>?) {
-                        response?.body()?.let {
-                            presenter.showActorList(it)
-                        }
-                    }
-                })
     }
 
     override fun getApi(id: Int){
 
         Retrofit().retrofit(BaseUrl.baseUrl)
                 .create(API :: class.java).getMovieDetail(id)
-                .enqueue(object : Callback<MovieDetail>{
-                    override fun onFailure(call: Call<MovieDetail>?, t: Throwable?) {
-                    }
-
-                    override fun onResponse(call: Call<MovieDetail>?, response: Response<MovieDetail>?) {
-                        response?.body()?.let {
-                            presenter.showApiTextId(it)
-                        }
-                    }
-                })
+                .subscribeOn(Schedulers.io())
+                .subscribe{
+                    presenter.showApiTextId(it)
+                }
     }
-
 }

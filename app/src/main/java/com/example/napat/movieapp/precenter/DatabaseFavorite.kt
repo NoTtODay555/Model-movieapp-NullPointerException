@@ -40,7 +40,7 @@ class DatabaseFavorite(val context: Context, val show: Constutor_View.GetDataFav
                 favoriteList.add(addItem)
             }
             else -> {
-                for (b in 0 until favoriteList.size){
+                for (b in 0 until favoriteList.size-1){
                     if (id == favoriteList[b].id) {
                         favoriteList.remove(favoriteList[b])
                     }

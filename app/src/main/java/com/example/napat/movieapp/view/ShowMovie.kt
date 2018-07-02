@@ -14,6 +14,10 @@ import com.example.napat.movieapp.precenter.DatabaseFavorite
 import com.example.napat.movieapp.precenter.DatabaseHelp
 import com.example.napat.movieapp.precenter.PresenterMain
 import com.example.napat.movieapp.precenter.PresenterShow
+import io.reactivex.Observable
+import io.reactivex.Observer
+import io.reactivex.Single
+import io.reactivex.functions.Function
 import kotlinx.android.synthetic.main.activity_show_movie.*
 
 class ShowMovie : AppCompatActivity()
@@ -139,6 +143,8 @@ class ShowMovie : AppCompatActivity()
             if(bo) dataRate.getRateData(id,fl)
         }
 
+
     }
+
 
 }
