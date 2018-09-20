@@ -14,7 +14,6 @@ var NEWDATALISTHISTORY = "list_data_history"
 class DataHistory(val context: Context,
                   private val history : ConstuterViewHistory.GetDataHistory)
                   : ConsPresenterHistory.DataHistory {
-
     override fun getHistoryData() {
         val preferences = context.getSharedPreferences(NEWHISTORY, Context.MODE_PRIVATE)
         val test = ""
@@ -28,5 +27,4 @@ class DataHistory(val context: Context,
             history.listHistoryData(it)
         }
     }
-
 }

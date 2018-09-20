@@ -137,7 +137,6 @@ class ShowMovie : AppCompatActivity()
             ratingBar.setIsIndicator(true)
             if(bo) dataRate.getRateData(id,fl)
         }
-
     }
 
 }
